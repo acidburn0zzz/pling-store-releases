@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Newer openssl workaround
+export OPENSSL_CONF=/etc/ssl/
+
+PREFIX="$(cd "$(dirname "${0}")" && pwd)"
+
+if [ ${APPIMAGE} ]; then
+    export PATH=${PREFIX}/usr/local/bin:${PREFIX}/usr/bin:${PATH}
+fi
+
+if [ -f "${PREFIX}/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/usr/local/lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/usr/local/lib/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/usr/lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/usr/lib/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/../lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/../lib/pling-store-linux-x64/pling-store
+else
+    exit 1
+fi

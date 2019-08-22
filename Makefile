@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 
-TARGET = ocs-store
+TARGET = pling-store
 srcdir = .
 
 DESTDIR =
