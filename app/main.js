@@ -20,7 +20,6 @@ let ocsManager = null;
 let ocsManagerUrl = '';
 
 async function startOcsManager() {
-    console.log('hi')
     return new Promise((resolve) => {
         const resolveOcsManagerUrl = (data) => {
             const matches = data.toString().match(/Websocket server started at: "(wss?:\/\/.+)"/);
