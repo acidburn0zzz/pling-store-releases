@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=OCS-Store
-Exec=ocs-store
-Icon=ocs-store
+Name=Pling-Store
+Exec=pling-store
+Icon=pling-store
 Type=Application
 Terminal=false
 NoDisplay=false

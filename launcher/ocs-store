@@ -9,14 +9,14 @@ if [ ${APPIMAGE} ]; then
     export PATH=${PREFIX}/usr/local/bin:${PREFIX}/usr/bin:${PATH}
 fi
 
-if [ -f "${PREFIX}/ocs-store-linux-x64/ocs-store" ]; then
-    ${PREFIX}/ocs-store-linux-x64/ocs-store
-elif [ -f "${PREFIX}/usr/local/lib/ocs-store-linux-x64/ocs-store" ]; then
-    ${PREFIX}/usr/local/lib/ocs-store-linux-x64/ocs-store
-elif [ -f "${PREFIX}/usr/lib/ocs-store-linux-x64/ocs-store" ]; then
-    ${PREFIX}/usr/lib/ocs-store-linux-x64/ocs-store
-elif [ -f "${PREFIX}/../lib/ocs-store-linux-x64/ocs-store" ]; then
-    ${PREFIX}/../lib/ocs-store-linux-x64/ocs-store
+if [ -f "${PREFIX}/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/usr/local/lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/usr/local/lib/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/usr/lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/usr/lib/pling-store-linux-x64/pling-store
+elif [ -f "${PREFIX}/../lib/pling-store-linux-x64/pling-store" ]; then
+    ${PREFIX}/../lib/pling-store-linux-x64/pling-store
 else
     exit 1
 fi
