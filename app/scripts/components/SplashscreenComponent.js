@@ -31,7 +31,7 @@ export default class SplashscreenComponent extends BaseComponent {
                 align-items: center;
                 justify-content: center;
             }
-            div[slot="content"] figure.icon-ocs-store {
+            div[slot="content"] figure.icon-pling-store {
                 display: inline-block;
                 width: 128px;
                 height: 128px;
@@ -47,7 +47,7 @@ export default class SplashscreenComponent extends BaseComponent {
             <app-dialog data-width="400px" data-height="300px"
                 data-state="active" data-header-state="inactive" data-footer-state="inactive" data-auto-close-state="inactive">
             <div slot="content">
-            <figure class="icon-ocs-store"></figure>
+            <figure class="icon-pling-store"></figure>
             <h3>Welcome to ${document.title}</h3>
             <p>Loading...</p>
             </div>
