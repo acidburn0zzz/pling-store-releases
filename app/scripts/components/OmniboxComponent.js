@@ -231,7 +231,7 @@ export default class OmniboxComponent extends BaseComponent {
             <h4><i class="material-icons md-small">home</i> Choose Startpage</h4>
             <nav>
             <ul>
-            <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/">opendesktop.org</app-button></li>
+            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/">pling.com</app-button></li>
             <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/Gnome">gnome-look.org</app-button></li>
             <li><app-button data-action="webview_startPage" data-url="https://store.kde.org/">store.kde.org</app-button></li>
             <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/XFCE">xfce-look.org</app-button></li>
