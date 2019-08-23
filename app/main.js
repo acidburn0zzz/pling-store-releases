@@ -64,6 +64,7 @@ function stopOcsManager() {
 }
 
 function createWindow() {
+
     const appConfigStore = new ElectronStore({
         name: appConfigStoreStorage,
         defaults: appConfig.defaults
@@ -74,10 +75,9 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         title: appPackage.productName,
         icon: windowIcon,
-        x: windowBounds.x,
-        y: windowBounds.y,
-        width: windowBounds.width,
-        height: windowBounds.height,
+        width: 1250,
+        height: 800,
+        center:true,
         webPreferences: {
             nodeIntegration: true
         }
