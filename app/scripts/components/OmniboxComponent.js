@@ -232,13 +232,11 @@ export default class OmniboxComponent extends BaseComponent {
             <nav>
             <ul>
             <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/">pling.com</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.appimagehub.com/">Appimagehub.com</app-button></li>
+            <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/Gnome">gnome-look.org</app-button></li>
             <li><app-button data-action="webview_startPage" data-url="https://store.kde.org/">store.kde.org</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/s/Artwork">s/Artwork</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/s/Gnome">s/Gnome</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/s/Comics">Comics</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/s/XFCE">xfce-look.org</app-button></li>
-            <li><app-button data-action="webview_startPage" data-url="https://www.pling.com/s/Videos">Videos</app-button></li>
+            <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/XFCE">xfce-look.org</app-button></li>
+            <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/Window-Managers">box-look.org</app-button></li>
+            <li><app-button data-action="webview_startPage" data-url="https://www.opendesktop.org/s/Enlightenment">enlightenment-themes.org</app-button></li>
             </ul>
             </nav>
             </div>

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKGNAME='pling-store'
+PKGNAME='ocs-store'
 
 PKGUSER='pkgbuilder'
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-PKGNAME='pling-store'
-PKGVER='5.0.0'
+PKGNAME='ocs-store'
+PKGVER='4.1.1'
 PKGREL='1'
 
-UPDINFO='zsync|http://dl.opendesktop.org/api/files/download/id/1532435039/as/latest/pling-store-x86_64.AppImage.zsync'
+UPDINFO='zsync|http://dl.opendesktop.org/api/files/download/id/1532435039/as/latest/ocs-store-x86_64.AppImage.zsync'
 APPDIR="${PKGNAME}.AppDir"
 
 make
@@ -14,10 +14,10 @@ install -D -m 755 ${APPDIR}/usr/bin/${PKGNAME} ${APPDIR}/AppRun
 install -D -m 644 ${APPDIR}/usr/share/applications/${PKGNAME}.desktop ${APPDIR}/${PKGNAME}.desktop
 install -D -m 644 ${APPDIR}/usr/share/icons/hicolor/scalable/apps/${PKGNAME}.svg ${APPDIR}/${PKGNAME}.svg
 
-install -D -m 755 /usr/lib/x86_64-linux-gnu/libgconf-2.so.4 ${APPDIR}/usr/lib/pling-store-linux-x64/libgconf-2.so.4
-install -D -m 755 /usr/lib/x86_64-linux-gnu/libXss.so.1 ${APPDIR}/usr/lib/pling-store-linux-x64/libXss.so.1
-install -D -m 755 /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so ${APPDIR}/usr/lib/pling-store-linux-x64/libcanberra-gtk-module.so
-install -D -m 755 /usr/lib/x86_64-linux-gnu/libgnome-keyring.so.0 ${APPDIR}/usr/lib/pling-store-linux-x64/libgnome-keyring.so.0
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libgconf-2.so.4 ${APPDIR}/usr/lib/ocs-store-linux-x64/libgconf-2.so.4
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libXss.so.1 ${APPDIR}/usr/lib/ocs-store-linux-x64/libXss.so.1
+install -D -m 755 /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so ${APPDIR}/usr/lib/ocs-store-linux-x64/libcanberra-gtk-module.so
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libgnome-keyring.so.0 ${APPDIR}/usr/lib/ocs-store-linux-x64/libgnome-keyring.so.0
 
 curl -fsSL -o ocs-manager https://git.opendesktop.org/akiraohgaki/ocs-manager/uploads/d3dc42436b82d11360ebc96b38d4aaf4/ocs-manager-0.8.1-1-x86_64.AppImage
 install -D -m 755 ocs-manager ${APPDIR}/usr/bin/ocs-manager
