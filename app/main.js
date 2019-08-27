@@ -107,7 +107,7 @@ function createWindow() {
     }
 
     mainWindow.loadURL(windowIndexFileUrl);
-
+    mainWindow.maximize();
     createView();
 }
 
