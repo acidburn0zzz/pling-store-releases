@@ -9,6 +9,8 @@ if [ ${APPIMAGE} ]; then
     export PATH=${PREFIX}/usr/local/bin:${PREFIX}/usr/bin:${PATH}
 fi
 
+HOME=${PREFIX}/usr/share/imwheel imwheel
+
 if [ -f "${PREFIX}/pling-store-linux-x64/pling-store" ]; then
     ${PREFIX}/pling-store-linux-x64/pling-store
 elif [ -f "${PREFIX}/usr/local/lib/pling-store-linux-x64/pling-store" ]; then
@@ -18,5 +20,8 @@ elif [ -f "${PREFIX}/usr/lib/pling-store-linux-x64/pling-store" ]; then
 elif [ -f "${PREFIX}/../lib/pling-store-linux-x64/pling-store" ]; then
     ${PREFIX}/../lib/pling-store-linux-x64/pling-store
 else
+    pkill imwheel
     exit 1
 fi
+
+pkill imwheel

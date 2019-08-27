@@ -23,7 +23,7 @@ install_build_deps_appimage() {
     git clone https://github.com/tj/n.git -b master --single-branch --depth=1 "${PROJDIR}/n"
     (cd "${PROJDIR}/n" && make install && n lts)
     rm -rf "${PROJDIR}/n"
-    apt -y install libgconf-2-4 libxss1 libcanberra-gtk-module libgnome-keyring0
+    apt -y install libgconf-2-4 libxss1 libcanberra-gtk-module libgnome-keyring0 imwheel
 }
 
 build_appimage() {
@@ -32,6 +32,7 @@ build_appimage() {
     export_srcarchive "${BUILDDIR}/${PKGNAME}.tar.gz"
     tar -xzf "${BUILDDIR}/${PKGNAME}.tar.gz" -C "${BUILDDIR}"
     cp "${PROJDIR}/pkg/appimage/appimagebuild" "${BUILDDIR}/${PKGNAME}"
+    cp "${PROJDIR}/pkg/appimage/imwheel.conf" "${BUILDDIR}/${PKGNAME}"
     cd "${BUILDDIR}/${PKGNAME}"
     ./appimagebuild
 }
