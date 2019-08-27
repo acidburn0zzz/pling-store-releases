@@ -1,12 +1,7 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 PKGNAME='pling-store'
 PKGVER='4.1.1'
-=======
-PKGNAME='ocs-store'
-PKGVER='5.0.0'
->>>>>>> parent of 5df96a3... revert to pling-store
 PKGREL='1'
 
 UPDINFO='zsync|http://dl.opendesktop.org/api/files/download/id/1532435039/as/latest/ocs-store-x86_64.AppImage.zsync'
