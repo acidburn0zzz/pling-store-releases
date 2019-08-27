@@ -3,17 +3,17 @@ import BaseComponent from './common/BaseComponent.js';
 export default class SplashscreenComponent extends BaseComponent {
 
     init() {
-        this._viewHandler_browserView_loading = this._viewHandler_browserView_loading.bind(this);
+        this._viewHandler_webview_loading = this._viewHandler_webview_loading.bind(this);
     }
 
     componentConnectedCallback() {
         this.getStateManager().viewHandler
-            .add('browserView_loading', this._viewHandler_browserView_loading);
+            .add('webview_loading', this._viewHandler_webview_loading);
     }
 
     componentDisconnectedCallback() {
         this.getStateManager().viewHandler
-            .remove('browserView_loading', this._viewHandler_browserView_loading);
+            .remove('webview_loading', this._viewHandler_webview_loading);
     }
 
     render() {
@@ -31,7 +31,7 @@ export default class SplashscreenComponent extends BaseComponent {
                 align-items: center;
                 justify-content: center;
             }
-            div[slot="content"] figure.icon-pling-store {
+            div[slot="content"] figure.icon-ocs-store {
                 display: inline-block;
                 width: 128px;
                 height: 128px;
@@ -47,7 +47,7 @@ export default class SplashscreenComponent extends BaseComponent {
             <app-dialog data-width="400px" data-height="300px"
                 data-state="active" data-header-state="inactive" data-footer-state="inactive" data-auto-close-state="inactive">
             <div slot="content">
-            <figure class="icon-pling-store"></figure>
+            <figure class="icon-ocs-store"></figure>
             <h3>Welcome to ${document.title}</h3>
             <p>Loading...</p>
             </div>
@@ -55,7 +55,7 @@ export default class SplashscreenComponent extends BaseComponent {
         `;
     }
 
-    _viewHandler_browserView_loading(state) {
+    _viewHandler_webview_loading(state) {
         if (!state.isLoading) {
             this.contentRoot.querySelector('app-dialog').close();
             // Splash screen only shows when app launch, so remove it

@@ -31,6 +31,9 @@ ToolbarComponent.define('app-toolbar');
 import OmniboxComponent from './OmniboxComponent.js';
 OmniboxComponent.define('app-omnibox');
 
+import WebviewComponent from './WebviewComponent.js';
+WebviewComponent.define('app-webview');
+
 import CollectiondialogComponent from './CollectiondialogComponent.js';
 CollectiondialogComponent.define('app-collectiondialog');
 

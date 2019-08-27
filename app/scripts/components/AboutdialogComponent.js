@@ -41,7 +41,7 @@ export default class AboutdialogComponent extends BaseComponent {
                 padding: 1em;
                 text-align: center;
             }
-            div[slot="content"] figure.icon-pling-store {
+            div[slot="content"] figure.icon-ocs-store {
                 display: inline-block;
                 width: 128px;
                 height: 128px;
@@ -58,7 +58,7 @@ export default class AboutdialogComponent extends BaseComponent {
             <app-dialog data-width="500px" data-footer-state="inactive">
             <h3 slot="header">About This App</h3>
             <div slot="content">
-            <figure class="icon-pling-store"></figure>
+            <figure class="icon-ocs-store"></figure>
             <h4>${this.state.productName}</h4>
             <p>Version ${this.state.version}</p>
             <p>${this.state.description}</p>
@@ -87,7 +87,7 @@ export default class AboutdialogComponent extends BaseComponent {
     _handleClick(event) {
         if (event.target.closest('a')) {
             event.preventDefault();
-            this.dispatch('browserView_loadUrl', {url: event.target.closest('a').href});
+            this.dispatch('webview_loadUrl', {url: event.target.closest('a').href});
             this.close();
         }
     }

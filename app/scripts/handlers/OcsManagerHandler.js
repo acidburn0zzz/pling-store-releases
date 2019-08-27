@@ -8,7 +8,7 @@ export default class OcsManagerHandler {
         this._previewpicDirectory = this._ipcRenderer.sendSync('previewpic', 'directory');
         this._installTypes = {};
 
-        //this._webviewComponent = null;
+        this._webviewComponent = null;
         this._collectiondialogComponent = null;
 
         this._subscribe();
@@ -16,19 +16,11 @@ export default class OcsManagerHandler {
     }
 
     _subscribe() {
-        this._ipcRenderer.on('ocsManager_openUrl', (event, data) => {
-            this._stateManager.dispatch('ocsManager_openUrl', data);
-        });
-
-        this._ipcRenderer.on('ocsManager_getItemByOcsUrl', (event, data) => {
-            this._stateManager.dispatch('ocsManager_getItemByOcsUrl', data);
-        });
-
         this._stateManager.actionHandler
-            /*.add('webview_activate', (data) => {
+            .add('webview_activate', (data) => {
                 this._webviewComponent = data.component;
                 return {isActivated: true};
-            })*/
+            })
             .add('ocsManager_activate', (data) => {
                 this._collectiondialogComponent = data.component;
                 return {isActivated: true};
@@ -185,7 +177,29 @@ export default class OcsManagerHandler {
                 });
 
                 // Download preview picture
-                this._ipcRenderer.sendSync('previewpic', 'download', message.data[0].metadata.url);
+                const selector = 'meta[property="og:image"]';
+                this._webviewComponent.executeJavaScript(
+                    `document.querySelector('${selector}').content`,
+                    false,
+                    (result) => {
+                        let previewpicUrl = result || '';
+
+                        // FIXME: previewpic API maybe deprecated
+                        /*
+                        if (!previewpicUrl
+                            && message.data[0].metadata.command === 'install'
+                            && message.data[0].metadata.provider
+                            && message.data[0].metadata.content_id
+                        ) {
+                            previewpicUrl = `${message.data[0].metadata.provider}content/previewpic/${message.data[0].metadata.content_id}`;
+                        }
+                        */
+
+                        if (previewpicUrl) {
+                            this._ipcRenderer.sendSync('previewpic', 'download', message.data[0].metadata.url, previewpicUrl);
+                        }
+                    }
+                );
             })
             .set('ItemHandler::downloadFinished', (message) => {
                 if (message.data[0].status !== 'success_download') {
