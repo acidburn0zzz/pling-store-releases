@@ -22,6 +22,10 @@ install -D -m 755 /usr/lib/x86_64-linux-gnu/libgnome-keyring.so.0 ${APPDIR}/usr/
 curl -fsSL -o ocs-manager https://git.opendesktop.org/akiraohgaki/ocs-manager/uploads/d3dc42436b82d11360ebc96b38d4aaf4/ocs-manager-0.8.1-1-x86_64.AppImage
 install -D -m 755 ocs-manager ${APPDIR}/usr/bin/ocs-manager
 
+IMWHEEL_PATH=`which imwheel`
+install -D -m 755 ${IMWHEEL_PATH} ${APPDIR}/usr/bin/ocs-imwheel
+install -D -m 644 imwheel.conf ${APPDIR}/usr/share/imwheel/.imwheelrc
+
 curl -fsSL -o appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
 chmod 755 appimagetool
 ./appimagetool --appimage-extract
