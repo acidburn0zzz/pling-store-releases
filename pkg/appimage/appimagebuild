@@ -31,7 +31,7 @@ chmod 755 appimagetool
 ./appimagetool --appimage-extract
 ./squashfs-root/AppRun -u "${UPDINFO}" ${APPDIR}
 
-# Only timestamp development brances
+# Only timestamp development branches
 if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
   PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y-%m-%d_%H-%M-%S")
 fi
