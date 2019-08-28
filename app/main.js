@@ -11,7 +11,7 @@ const ocsManagerConfig = require('./configs/ocs-manager.json');
 
 const isDebugMode = process.argv.includes('--debug');
 const previewpicDirectory = `${app.getPath('userData')}/previewpic`;
-const windowIcon = `${__dirname}/images/app-icons/ocs-store.png`;
+const windowIcon = `${__dirname}/images/app-icons/pling-store.png`;
 const indexFileUrl = `file://${__dirname}/index.html`;
 const appConfigStoreStorage = 'application';
 
