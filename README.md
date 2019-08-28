@@ -21,4 +21,4 @@ After installing AppImageLauncher, you can simply Double-Click on the Pling-Stor
 
 # Manual Run
 
-To try the Pling-Store without installing, you can simply make it exectuable and (double-)click on it. 
+To try the Pling-Store without installing, you can simply [make it executable](https://youtu.be/nzZ6Ikc7juw?t=78) and (double-)click on it. 
