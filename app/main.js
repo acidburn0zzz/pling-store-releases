@@ -88,7 +88,7 @@ function createWindow() {
     }
 
     mainWindow.loadURL(indexFileUrl);
-    mainWindow.maximize();
+    mainWindow.setFullScreen(true);
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
