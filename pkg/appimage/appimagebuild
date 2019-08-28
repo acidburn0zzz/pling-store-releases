@@ -33,7 +33,7 @@ chmod 755 appimagetool
 
 # Only timestamp development branches
 if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
-  PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y-%m-%d_%H-%M-%S")
+  PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
 fi
 
 mv *-x86_64.AppImage ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
