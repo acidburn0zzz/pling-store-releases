@@ -5,6 +5,9 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
 const request = require('request');
 
+// Set configs dir
+app.setPath("userData", app.getPath("appData") + "/OCS-Store")
+
 const appPackage = require('../package.json');
 const appConfig = require('./configs/application.json');
 const ocsManagerConfig = require('./configs/ocs-manager.json');
@@ -188,9 +191,6 @@ app.on('web-contents-created', (event, webContents) => {
         });
     }
 });
-
-// Set configs dir
-app.setPath("userData", app.getPath("appData") + "/OCS-Store")
 
 ipcMain.on('app', (event, key) => {
     const data = {
