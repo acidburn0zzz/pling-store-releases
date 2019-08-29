@@ -4,7 +4,7 @@ PKGNAME='pling-store'
 PKGVER='5.0.1'
 PKGREL='1'
 
-UPDINFO='zsync|http://dl.opendesktop.org/api/files/download/id/1532435039/as/latest/ocs-store-x86_64.AppImage.zsync'
+UPDINFO="zsync|https://www.opencode.net/dnf2/pling-store/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync?job=appimage"
 APPDIR="${PKGNAME}.AppDir"
 
 make
@@ -36,5 +36,8 @@ if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
   PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
 fi
 
+# Fix url in zsync file
+sed -i "/^URL:.*$/c\URL: ${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage?job=appimage" *-x86_64.AppImage.zsync
+
 mv *-x86_64.AppImage ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
-mv *-x86_64.AppImage.zsync ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage.zsync
+mv *-x86_64.AppImage.zsync ../${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync
