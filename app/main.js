@@ -87,15 +87,12 @@ function createWindow() {
         }
     });
 
-    console.log("checking if it updates");
-
     if (!isDebugMode) {
         mainWindow.setMenu(null);
     }
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
-    autoUpdater.checkForUpdatesAndNotify();
     
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
