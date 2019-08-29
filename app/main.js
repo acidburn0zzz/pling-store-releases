@@ -87,6 +87,8 @@ function createWindow() {
         }
     });
 
+    console.log("checking if it updates");
+
     if (!isDebugMode) {
         mainWindow.setMenu(null);
     }
