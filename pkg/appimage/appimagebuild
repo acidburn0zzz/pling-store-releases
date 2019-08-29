@@ -4,7 +4,7 @@ PKGNAME='pling-store'
 PKGVER='5.0.1'
 PKGREL='1'
 
-UPDINFO="zsync|https://www.opencode.net/dnf2/pling-store/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync?job=appimage"
+UPDINFO="zsync|https://www.opencode.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync?job=appimage"
 APPDIR="${PKGNAME}.AppDir"
 
 make
