@@ -92,6 +92,9 @@ function createWindow() {
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
+
+    console.log('should check for updates')
+
     require('update-electron-app')({
         repo: 'dfn2/pling-store',
         host: 'http://www.opencode.net',
