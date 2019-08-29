@@ -2,9 +2,18 @@
 
 PKGNAME='pling-store'
 PKGVER='5.0.1'
-PKGREL='1'
 
-UPDINFO="zsync|https://www.opencode.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync?job=appimage"
+# Only timestamp development branches
+if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
+  PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
+else
+  PKGREL='1'
+fi
+
+APPIMAGE_FILE_NAME=${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
+ZSYNC_FILE_NAME=${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync
+
+UPDINFO="zsync|https://www.opencode.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${ZSYNC_FILE_NAME}?job=appimage"
 APPDIR="${PKGNAME}.AppDir"
 
 make
@@ -31,13 +40,8 @@ chmod 755 appimagetool
 ./appimagetool --appimage-extract
 ./squashfs-root/AppRun -u "${UPDINFO}" ${APPDIR}
 
-# Only timestamp development branches
-if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
-  PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
-fi
-
 # Fix url in zsync file
-sed -i "/^URL:.*$/c\URL: ${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage?job=appimage" *-x86_64.AppImage.zsync
+sed -i "/^URL:.*$/c\URL: ${APPIMAGE_FILE_NAME}?job=appimage" *-x86_64.AppImage.zsync
 
-mv *-x86_64.AppImage ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
-mv *-x86_64.AppImage.zsync ../${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync
+mv *-x86_64.AppImage ../${APPIMAGE_FILE_NAME}
+mv *-x86_64.AppImage.zsync ../${ZSYNC_FILE_NAME}
