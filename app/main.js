@@ -5,13 +5,16 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
 const request = require('request');
 
+// Set configs dir
+app.setPath("userData", app.getPath("appData") + "/OCS-Store")
+
 const appPackage = require('../package.json');
 const appConfig = require('./configs/application.json');
 const ocsManagerConfig = require('./configs/ocs-manager.json');
 
 const isDebugMode = process.argv.includes('--debug');
 const previewpicDirectory = `${app.getPath('userData')}/previewpic`;
-const windowIcon = `${__dirname}/images/app-icons/ocs-store.png`;
+const windowIcon = `${__dirname}/images/app-icons/pling-store.png`;
 const indexFileUrl = `file://${__dirname}/index.html`;
 const appConfigStoreStorage = 'application';
 
@@ -88,7 +91,7 @@ function createWindow() {
     }
 
     mainWindow.loadURL(indexFileUrl);
-
+    mainWindow.maximize();
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
@@ -107,8 +110,7 @@ function isFile(path) {
     try {
         const stats = fs.statSync(path);
         return stats.isFile();
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         return false;
     }
@@ -118,8 +120,7 @@ function isDirectory(path) {
     try {
         const stats = fs.statSync(path);
         return stats.isDirectory();
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         return false;
     }
@@ -159,8 +160,7 @@ function removePreviewpic(itemKey) {
 app.on('ready', async () => {
     if (await startOcsManager()) {
         createWindow();
-    }
-    else {
+    } else {
         app.quit();
     }
 });
@@ -220,19 +220,15 @@ ipcMain.on('store', (event, key, value) => {
 ipcMain.on('previewpic', (event, kind, itemKey, url) => {
     if (kind === 'directory') {
         event.returnValue = previewpicDirectory;
-    }
-    else if (kind === 'path' && itemKey) {
+    } else if (kind === 'path' && itemKey) {
         event.returnValue = `${previewpicDirectory}/${previewpicFilename(itemKey)}`;
-    }
-    else if (kind === 'download' && itemKey && url) {
+    } else if (kind === 'download' && itemKey && url) {
         downloadPreviewpic(itemKey, url);
         event.returnValue = undefined;
-    }
-    else if (kind === 'remove' && itemKey) {
+    } else if (kind === 'remove' && itemKey) {
         removePreviewpic(itemKey);
         event.returnValue = undefined;
-    }
-    else {
+    } else {
         event.returnValue = false;
     }
 });

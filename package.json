@@ -1,18 +1,19 @@
 {
   "name": "pling-store",
   "productName": "Pling-Store",
-  "version": "4.1.1",
+  "version": "5.0.1",
   "description": "Store Frontend and Management Application based on OpenCollaborationServices (OCS) of Opendesktop.org.",
-  "author": "Opendesktop.org",
+  "author": "Pling.com",
   "license": "GPL-3.0",
-  "homepage": "https://www.opendesktop.org/",
+  "homepage": "https://www.pling.com/",
   "repository": "https://www.opencode.net/dfn2/pling-store",
   "bugs": "https://www.opencode.net/dfn2/pling-store/issues",
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
     "debug": "electron . --debug",
-    "package": "electron-packager . pling-store --platform=linux --arch=x64 --out=dist --overwrite --ignore='^/(\\.gitignore|\\.gitlab\\-ci\\.yml|Makefile|README\\.md|desktop|launcher|pkg|scripts|appimagebuild)($|/)'"
+    "package": "electron-packager . pling-store --platform=linux --arch=x64 --out=dist --overwrite --ignore='^/(\\.gitignore|\\.gitlab\\-ci\\.yml|Makefile|README\\.md|desktop|launcher|pkg|scripts|appimagebuild)($|/)'",
+    "watch" : "webpack --mode development --watch"
   },
   "dependencies": {
     "electron-store": "2.*.*",
@@ -22,6 +23,14 @@
   },
   "devDependencies": {
     "electron": "4.*.*",
-    "electron-packager": "13.*.*"
+    "electron-packager": "13.*.*",
+    "@babel/core":"*",
+    "@babel/polyfill":"*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "react":"*",
+    "react-dom":"*",
+    "webpack":"*",
+    "webpack-cli":"*"
   }
 }
