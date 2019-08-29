@@ -8,5 +8,5 @@ appimage:
     - ./scripts/package appimage
   artifacts:
     paths:
-    - build_*/pling-store*.AppImage
+    - build_*/pling-store*.AppImage*
     expire_in: 2 days

@@ -37,3 +37,4 @@ if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
 fi
 
 mv *-x86_64.AppImage ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
+mv *-x86_64.AppImage.zsync ../${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage.zsync
