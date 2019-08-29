@@ -3,7 +3,6 @@ const {spawn} = require('child_process');
 
 const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
-const {autoUpdater} = require('electron-updater');
 const request = require('request');
 
 // Set configs dir
@@ -93,6 +92,12 @@ function createWindow() {
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
+    require('update-electron-app')({
+        repo: 'dfn2/pling-store',
+        host: 'http://www.opencode.net',
+        updateInterval: '1 hour',
+        logger: require('electron-log')
+    })
     
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
