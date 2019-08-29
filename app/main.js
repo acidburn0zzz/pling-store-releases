@@ -3,6 +3,7 @@ const {spawn} = require('child_process');
 
 const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
+const {autoUpdater} = require('electron-updater');
 const request = require('request');
 
 const appPackage = require('../package.json');
@@ -89,6 +90,8 @@ function createWindow() {
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
+    autoUpdater.checkForUpdatesAndNotify();
+    
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
