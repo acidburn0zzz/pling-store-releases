@@ -5,6 +5,11 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
 const request = require('request');
 
+const {autoUpdater} = require("electron-updater")
+
+autoUpdater.logger = require("electron-log")
+autoUpdater.logger.transports.file.level = "info"
+
 // Set configs dir
 app.setPath("userData", app.getPath("appData") + "/OCS-Store")
 
@@ -93,15 +98,7 @@ function createWindow() {
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
 
-    console.log('should check for updates')
 
-    require('update-electron-app')({
-        repo: 'dfn2/pling-store',
-        host: 'http://www.opencode.net',
-        updateInterval: '1 hour',
-        logger: require('electron-log')
-    })
-    
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
@@ -170,6 +167,7 @@ function removePreviewpic(itemKey) {
 app.on('ready', async () => {
     if (await startOcsManager()) {
         createWindow();
+        autoUpdater.checkForUpdatesAndNotify()
     } else {
         app.quit();
     }
