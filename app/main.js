@@ -10,8 +10,6 @@ const {autoUpdater} = require("electron-updater")
 autoUpdater.logger = require("electron-log")
 autoUpdater.logger.transports.file.level = "info"
 
-autoUpdater.setFeedURL({"provider": "generic", "url": "https://www.opencode.net/azubieta/pling-store/-/jobs/artifacts/master/raw/build_pling-store/pling-store-master-x86_64.AppImage.zsync?job=appimage"})
-
 // Set configs dir
 app.setPath("userData", app.getPath("appData") + "/OCS-Store")
 
