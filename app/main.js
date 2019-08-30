@@ -93,15 +93,6 @@ function createWindow() {
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
 
-    console.log('should check for updates')
-
-    require('update-electron-app')({
-        repo: 'dfn2/pling-store',
-        host: 'http://www.opencode.net',
-        updateInterval: '1 hour',
-        logger: require('electron-log')
-    })
-    
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());

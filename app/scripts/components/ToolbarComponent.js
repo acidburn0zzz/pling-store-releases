@@ -121,7 +121,7 @@ export default class ToolbarComponent extends BaseComponent {
                 data-title="My Collection" data-icon="folder"></app-iconbutton><br>
             <app-badge data-count="0" data-emphasis="high"></app-badge>
             <app-badge data-count="0" data-emphasis="medium"></app-badge>
-            </li>
+            </li>  
             <li data-omnibox><app-omnibox></app-omnibox></li>
             <li>
             <app-iconbutton data-action="menu_open"
