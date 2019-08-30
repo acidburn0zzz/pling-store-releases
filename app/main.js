@@ -5,11 +5,6 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const ElectronStore = require('electron-store');
 const request = require('request');
 
-const {autoUpdater} = require("electron-updater")
-
-autoUpdater.logger = require("electron-log")
-autoUpdater.logger.transports.file.level = "info"
-
 // Set configs dir
 app.setPath("userData", app.getPath("appData") + "/OCS-Store")
 
@@ -97,7 +92,7 @@ function createWindow() {
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
-
+    
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
@@ -166,7 +161,6 @@ function removePreviewpic(itemKey) {
 app.on('ready', async () => {
     if (await startOcsManager()) {
         createWindow();
-        autoUpdater.checkForUpdatesAndNotify()
     } else {
         app.quit();
     }
