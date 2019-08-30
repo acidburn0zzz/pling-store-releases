@@ -92,7 +92,7 @@ function createWindow() {
 
     mainWindow.loadURL(indexFileUrl);
     mainWindow.maximize();
-
+    
     mainWindow.on('close', () => {
         const appConfigStore = new ElectronStore({name: appConfigStoreStorage});
         appConfigStore.set('windowBounds', mainWindow.getBounds());
