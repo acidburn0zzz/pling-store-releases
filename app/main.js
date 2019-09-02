@@ -32,7 +32,7 @@ async function startOcsManager() {
             }
         };
 
-        ocsManager = spawn(ocsManagerConfig.bin, ['-p', ocsManagerConfig.port]);
+        ocsManager = spawn(ocsManagerConfig.bin, ['-p', ocsManagerConfig.port, '--appFile', process.env.APPIMAGE]);
 
         ocsManager.stdout.on('data', (data) => {
             console.log(`[${ocsManagerConfig.bin}] ${data}`);
