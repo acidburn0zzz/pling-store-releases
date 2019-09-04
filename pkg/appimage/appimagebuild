@@ -1,0 +1,47 @@
+#!/bin/bash
+
+PKGNAME='pling-store'
+PKGVER='5.0.1'
+
+# Only timestamp development branches
+if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
+  PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
+else
+  PKGREL='1'
+fi
+
+APPIMAGE_FILE_NAME=${PKGNAME}-${PKGVER}-${PKGREL}-x86_64.AppImage
+ZSYNC_FILE_NAME=${PKGNAME}-${CI_COMMIT_REF_SLUG}-x86_64.AppImage.zsync
+
+UPDINFO="zsync|https://www.opencode.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}/-/jobs/artifacts/${CI_COMMIT_REF_SLUG}/raw/build_pling-store/${ZSYNC_FILE_NAME}?job=appimage"
+APPDIR="${PKGNAME}.AppDir"
+
+make
+make DESTDIR=${APPDIR} prefix=/usr install
+
+install -D -m 755 ${APPDIR}/usr/bin/${PKGNAME} ${APPDIR}/AppRun
+install -D -m 644 ${APPDIR}/usr/share/applications/${PKGNAME}.desktop ${APPDIR}/${PKGNAME}.desktop
+install -D -m 644 ${APPDIR}/usr/share/icons/hicolor/scalable/apps/${PKGNAME}.svg ${APPDIR}/${PKGNAME}.svg
+
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libgconf-2.so.4 ${APPDIR}/usr/lib/ocs-store-linux-x64/libgconf-2.so.4
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libXss.so.1 ${APPDIR}/usr/lib/ocs-store-linux-x64/libXss.so.1
+install -D -m 755 /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so ${APPDIR}/usr/lib/ocs-store-linux-x64/libcanberra-gtk-module.so
+install -D -m 755 /usr/lib/x86_64-linux-gnu/libgnome-keyring.so.0 ${APPDIR}/usr/lib/ocs-store-linux-x64/libgnome-keyring.so.0
+
+curl -fsSL -o ocs-manager https://www.opencode.net/dfn2/ocs-manager/-/jobs/artifacts/master/raw/build_ocs-manager/ocs-manager-0.8.1-1-x86_64.AppImage?job=appimage
+install -D -m 755 ocs-manager ${APPDIR}/usr/bin/ocs-manager
+
+IMWHEEL_PATH=$(which imwheel)
+install -D -m 755 ${IMWHEEL_PATH} ${APPDIR}/usr/bin/ocs-imwheel
+install -D -m 644 imwheel.conf ${APPDIR}/usr/share/imwheel/.imwheelrc
+
+curl -fsSL -o appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+chmod 755 appimagetool
+./appimagetool --appimage-extract
+./squashfs-root/AppRun -u "${UPDINFO}" ${APPDIR}
+
+# Fix url in zsync file
+sed -i "/^URL:.*$/c\URL: ${APPIMAGE_FILE_NAME}?job=appimage" *-x86_64.AppImage.zsync
+
+mv *-x86_64.AppImage ../${APPIMAGE_FILE_NAME}
+mv *-x86_64.AppImage.zsync ../${ZSYNC_FILE_NAME}

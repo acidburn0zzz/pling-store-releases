@@ -1,0 +1,12 @@
+stages:
+  - build
+
+appimage:
+  stage: build
+  image: ubuntu:14.04
+  script:
+    - ./scripts/package appimage
+  artifacts:
+    paths:
+    - build_*/pling-store*.AppImage*
+    expire_in: 2 days
