@@ -13,24 +13,17 @@
     "start": "electron .",
     "debug": "electron . --debug",
     "package": "electron-packager . pling-store --platform=linux --arch=x64 --out=dist --overwrite --ignore='^/(\\.gitignore|\\.gitlab\\-ci\\.yml|Makefile|README\\.md|desktop|launcher|pkg|scripts|appimagebuild)($|/)'",
-    "watch" : "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch"
   },
   "dependencies": {
     "electron-store": "2.*.*",
-    "request": "2.*.*",
+    "electron-updater": "^4.1.2",
     "esm": "3.*.*",
-    "lit-html": "1.*.*"
+    "lit-html": "1.*.*",
+    "request": "2.*.*"
   },
   "devDependencies": {
     "electron": "4.*.*",
-    "electron-packager": "13.*.*",
-    "@babel/core":"*",
-    "@babel/polyfill":"*",
-    "@babel/preset-env": "*",
-    "@babel/preset-react": "*",
-    "react":"*",
-    "react-dom":"*",
-    "webpack":"*",
-    "webpack-cli":"*"
+    "electron-packager": "13.*.*"
   }
 }
