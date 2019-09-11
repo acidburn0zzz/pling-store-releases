@@ -102,6 +102,11 @@ export default class WebviewComponent extends BaseComponent {
 
         this._webview.addEventListener('did-stop-loading', () => {
             this.dispatch('webview_loading', {isLoading: false});
+
+            // workaround for Input cursor invisible after navigation in webview
+            // details at https://github.com/electron/electron/issues/14474
+            this._webview.blur();
+            this._webview.focus();
         });
 
         this._webview.addEventListener('dom-ready', () => {
