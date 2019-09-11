@@ -42,6 +42,7 @@ chmod 755 appimagetool
 
 # Fix url in zsync file
 sed -i "/^URL:.*$/c\URL: ${APPIMAGE_FILE_NAME}?job=appimage" *-x86_64.AppImage.zsync
+sed -i "/^Filename:.*$/c\Filename: ${APPIMAGE_FILE_NAME}" *-x86_64.AppImage.zsync
 
 mv *-x86_64.AppImage ../${APPIMAGE_FILE_NAME}
 mv *-x86_64.AppImage.zsync ../${ZSYNC_FILE_NAME}
