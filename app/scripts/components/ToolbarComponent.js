@@ -189,7 +189,8 @@ export default class ToolbarComponent extends BaseComponent {
                 break;
             }
             case 'check_for_updates':{
-                this._ipcRenderer.send('checkForUpdates');
+                //this._ipcRenderer.send('checkForUpdates');
+                this.dispatch('ocsManager_checkForUpdates', {});
                 this.contentRoot.querySelector('app-menu').close();
                 break;
             }

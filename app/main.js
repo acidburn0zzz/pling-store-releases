@@ -222,6 +222,7 @@ ipcMain.on('store', (event, key, value) => {
 ipcMain.on('checkForUpdates', () => {
     // TODO -> add check for updates method?
     ocsManager = spawn(ocsManagerConfig.bin, ['-p', ocsManagerConfig.port, '--appFile', process.env.APPIMAGE]);
+    console.log(ocsManager);
 });
 
 ipcMain.on('previewpic', (event, kind, itemKey, url) => {

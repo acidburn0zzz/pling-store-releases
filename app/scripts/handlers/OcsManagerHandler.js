@@ -144,6 +144,12 @@ export default class OcsManagerHandler {
 
                 return false;
             })
+            .add('ocsManager_checkForUpdates', () => {
+                console.log('checkForUpdates');
+                this._ocsManagerApi.send('UpdateHandler::checkAppUpdate', []).then(function(res){
+                    console.log(res)
+                });
+            })
             .add('ocsManager_update', (data) => {
                 this._ocsManagerApi.send('UpdateHandler::update', [data.itemKey]);
                 return false;
