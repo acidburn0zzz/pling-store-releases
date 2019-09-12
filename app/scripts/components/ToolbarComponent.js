@@ -128,14 +128,17 @@ export default class ToolbarComponent extends BaseComponent {
                 data-title="Other Operations..." data-icon="more_vert"></app-iconbutton><br>
             <app-menu data-width="250px" data-offset-x="-220px">
             <a slot="menuitem" href="#" data-action="webview_appBugsPage">Report a Bug</a>
+            <a slot="menuitem" href="#" data-action="check_for_updates">Check for Updates</a>
             <a slot="menuitem" href="#" data-action="general_about">About This App</a>
             </app-menu>
+            </li>
+            <li>
             </li>
             </ul>
             </nav>
         `;
     }
-
+    /*<app-iconbutton data-action="login" data-title="Login" data-icon="account_circle" data-state="active"></app-iconbutton>*/
     _handleClick(event) {
         let target = null;
         if (event.target.closest('app-iconbutton[data-action]')) {
@@ -183,10 +186,19 @@ export default class ToolbarComponent extends BaseComponent {
                 this.contentRoot.querySelector('app-menu').close();
                 break;
             }
+            case 'check_for_updates':{
+                console.log('check for updates biatch');
+                this.contentRoot.querySelector('app-menu').close();
+                break;
+            }
             case 'general_about': {
                 this.dispatch('general_about', {});
                 this.contentRoot.querySelector('app-menu').close();
                 break;
+            }
+            case 'login':{
+                this.dispatch('webview_loginPage', {});
+                break;                
             }
         }
     }

@@ -219,6 +219,11 @@ ipcMain.on('store', (event, key, value) => {
     event.returnValue = key ? appConfigStore.get(key) : appConfigStore.store;
 });
 
+ipcMain.on('checkForUpdates', () => {
+    console.log('check for fkn updates');
+    ocsManager = spawn(ocsManagerConfig.bin, ['-p', ocsManagerConfig.port, '--appFile', process.env.APPIMAGE]);
+});
+
 ipcMain.on('previewpic', (event, kind, itemKey, url) => {
     if (kind === 'directory') {
         event.returnValue = previewpicDirectory;
