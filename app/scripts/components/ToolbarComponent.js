@@ -1,10 +1,11 @@
 import BaseComponent from './common/BaseComponent.js';
+const {ipcRenderer} = require('electron');
 
 export default class ToolbarComponent extends BaseComponent {
 
     init() {
         this.contentRoot.addEventListener('click', this._handleClick.bind(this));
-
+        this._ipcRenderer = ipcRenderer;
         this._viewHandler_webview_loading = this._viewHandler_webview_loading.bind(this);
         this._viewHandler_webview_page = this._viewHandler_webview_page.bind(this);
         this._viewHandler_ocsManager_updateAvailableItems = this._viewHandler_ocsManager_updateAvailableItems.bind(this);
@@ -133,12 +134,13 @@ export default class ToolbarComponent extends BaseComponent {
             </app-menu>
             </li>
             <li>
+            <app-iconbutton data-action="login" data-title="Login" data-icon="account_circle" data-state="active"></app-iconbutton>
             </li>
             </ul>
             </nav>
         `;
     }
-    /*<app-iconbutton data-action="login" data-title="Login" data-icon="account_circle" data-state="active"></app-iconbutton>*/
+
     _handleClick(event) {
         let target = null;
         if (event.target.closest('app-iconbutton[data-action]')) {
@@ -187,7 +189,7 @@ export default class ToolbarComponent extends BaseComponent {
                 break;
             }
             case 'check_for_updates':{
-                console.log('check for updates biatch');
+                this._ipcRenderer.send('checkForUpdates');
                 this.contentRoot.querySelector('app-menu').close();
                 break;
             }

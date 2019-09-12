@@ -220,7 +220,7 @@ ipcMain.on('store', (event, key, value) => {
 });
 
 ipcMain.on('checkForUpdates', () => {
-    console.log('check for fkn updates');
+    // TODO -> add check for updates method?
     ocsManager = spawn(ocsManagerConfig.bin, ['-p', ocsManagerConfig.port, '--appFile', process.env.APPIMAGE]);
 });
 
