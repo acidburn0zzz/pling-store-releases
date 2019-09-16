@@ -19,6 +19,9 @@ APPDIR="${PKGNAME}.AppDir"
 make
 make DESTDIR=${APPDIR} prefix=/usr install
 
+# Set version
+echo "X-AppImage-Version=${PKGVER}" >> ${APPDIR}/usr/share/applications/${PKGNAME}.desktop
+
 install -D -m 755 ${APPDIR}/usr/bin/${PKGNAME} ${APPDIR}/AppRun
 install -D -m 644 ${APPDIR}/usr/share/applications/${PKGNAME}.desktop ${APPDIR}/${PKGNAME}.desktop
 install -D -m 644 ${APPDIR}/usr/share/icons/hicolor/scalable/apps/${PKGNAME}.svg ${APPDIR}/${PKGNAME}.svg
