@@ -1,10 +1,11 @@
 import BaseComponent from './common/BaseComponent.js';
+const {ipcRenderer} = require('electron');
 
 export default class ToolbarComponent extends BaseComponent {
 
     init() {
         this.contentRoot.addEventListener('click', this._handleClick.bind(this));
-
+        this._ipcRenderer = ipcRenderer;
         this._viewHandler_webview_loading = this._viewHandler_webview_loading.bind(this);
         this._viewHandler_webview_page = this._viewHandler_webview_page.bind(this);
         this._viewHandler_ocsManager_updateAvailableItems = this._viewHandler_ocsManager_updateAvailableItems.bind(this);
@@ -128,8 +129,12 @@ export default class ToolbarComponent extends BaseComponent {
                 data-title="Other Operations..." data-icon="more_vert"></app-iconbutton><br>
             <app-menu data-width="250px" data-offset-x="-220px">
             <a slot="menuitem" href="#" data-action="webview_appBugsPage">Report a Bug</a>
+            <a slot="menuitem" href="#" data-action="check_for_updates">Check for Updates</a>
             <a slot="menuitem" href="#" data-action="general_about">About This App</a>
             </app-menu>
+            </li>
+            <li>
+            <app-iconbutton data-action="login" data-title="Login" data-icon="account_circle" data-state="active"></app-iconbutton>
             </li>
             </ul>
             </nav>
@@ -183,10 +188,20 @@ export default class ToolbarComponent extends BaseComponent {
                 this.contentRoot.querySelector('app-menu').close();
                 break;
             }
+            case 'check_for_updates':{
+                //this._ipcRenderer.send('checkForUpdates');
+                this.dispatch('ocsManager_checkForUpdates', {});
+                this.contentRoot.querySelector('app-menu').close();
+                break;
+            }
             case 'general_about': {
                 this.dispatch('general_about', {});
                 this.contentRoot.querySelector('app-menu').close();
                 break;
+            }
+            case 'login':{
+                this.dispatch('webview_loginPage', {});
+                break;                
             }
         }
     }

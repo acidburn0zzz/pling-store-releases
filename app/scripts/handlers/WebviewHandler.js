@@ -73,6 +73,10 @@ export default class WebviewHandler {
             .add('webview_appBugsPage', () => {
                 this._webviewComponent.loadUrl(this._appPackage.bugs);
                 return false;
+            })
+            .add('webview_loginPage', () => {
+                this._webviewComponent.loadUrl('https://www.pling.com/login');
+                return false;
             });
     }
 

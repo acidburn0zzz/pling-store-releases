@@ -4,7 +4,7 @@ PKGNAME='pling-store'
 PKGVER='5.0.1'
 
 # Only timestamp development branches
-if [ "${CI_COMMIT_REF_SLUG}" != "master" ]; then
+if [[ "${CI_PROJECT_NAME}" == *"development"* ]]; then
   PKGREL=dev-${CI_COMMIT_SHORT_SHA}-$(date +"%Y%m%d-%H%M%S")
 else
   PKGREL='1'
@@ -18,6 +18,9 @@ APPDIR="${PKGNAME}.AppDir"
 
 make
 make DESTDIR=${APPDIR} prefix=/usr install
+
+# Set version
+echo "X-AppImage-Version=${PKGVER}" >> ${APPDIR}/usr/share/applications/${PKGNAME}.desktop
 
 install -D -m 755 ${APPDIR}/usr/bin/${PKGNAME} ${APPDIR}/AppRun
 install -D -m 644 ${APPDIR}/usr/share/applications/${PKGNAME}.desktop ${APPDIR}/${PKGNAME}.desktop
@@ -42,6 +45,7 @@ chmod 755 appimagetool
 
 # Fix url in zsync file
 sed -i "/^URL:.*$/c\URL: ${APPIMAGE_FILE_NAME}?job=appimage" *-x86_64.AppImage.zsync
+sed -i "/^Filename:.*$/c\Filename: ${APPIMAGE_FILE_NAME}" *-x86_64.AppImage.zsync
 
 mv *-x86_64.AppImage ../${APPIMAGE_FILE_NAME}
 mv *-x86_64.AppImage.zsync ../${ZSYNC_FILE_NAME}
