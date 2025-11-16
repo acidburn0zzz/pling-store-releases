@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "electron-store": "2.*.*",
-    "electron-updater": "^4.1.2",
+    "electron-updater": "^4.6.5",
     "esm": "3.*.*",
     "lit-html": "1.*.*",
     "request": "2.*.*"
