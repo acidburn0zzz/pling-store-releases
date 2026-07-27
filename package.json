@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "electron-store": "2.*.*",
-    "electron-updater": "^4.1.2",
+    "electron-updater": "^6.3.0",
     "esm": "3.*.*",
     "lit-html": "1.*.*",
     "request": "2.*.*"
   },
   "devDependencies": {
-    "electron": "4.*.*",
-    "electron-packager": "13.*.*"
+    "electron": "43.*.*",
+    "electron-packager": "17.*.*"
   }
 }
